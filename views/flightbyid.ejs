@@ -1,0 +1,237 @@
+<style>
+  .maincontainer {
+    background: #192a56;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .box {
+    width: 65vw;
+    height: 69vh;
+    background: rgb(179, 213, 222);
+    border-radius: 25px;
+    padding: 15px;
+  }
+  .heading {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: rgb(10, 59, 149);
+    margin-bottom: 10px;
+  }
+  .daysstyle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .btn{
+    color:blue;
+    width: 100%;
+  }
+
+</style>
+<html>
+  <head>
+    <title>Flight Updation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"/>
+      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+      <script src="/javascripts/project.js"></script>
+
+      
+
+    </head>
+  <div class="maincontainer">
+    <div class="box">
+      <div class="heading">
+        <a href="/flight/displayallflights" title="Display Records"><img src="/images/display.png" width="40" align="right" /></a>
+
+        <img src="/images/logo.png" width="45" />
+        Flight Updation
+      </div>  
+
+        <form action="/flight/flight_edit_delete" method="post"  class="row g-3">
+         
+          <input type="hidden" name="flightid" value="<%=data.flightid%>">
+
+          <div class="col-md-6">
+            <label for="flightname" class="form-label"><b>Flight Name</b></label>
+            <input type="text" class="form-control" name="flightname" id="flightname" value="<%=data.flightname%>" />
+          </div>
+
+          <div class="col-md-6">
+            <label for="flighttype" class="form-label"><b>Flight Type</b></label>
+            <select id="flighttype" name="flighttype" class="form-select">
+              <option><%=data.flighttype%></option>
+              <option>Economy Class</option>
+              <option>Premium Economy Class</option>
+              <option>Bussiness Class</option>
+              <option>First Class</option>
+            </select>
+          </div>
+
+        <div class="col-md-6">
+            <label for="seats" class="form-label"><b>Total Seats</b></label>
+            <input type="text" class="form-control" name="flightseats" id="seats" value="<%=data.flightseats%>">
+        </div>
+
+        <div class="col-md-6">
+          <label for="days" class="form-label"><b>Days</b></label>  
+          <div class="daysstyle">
+
+          <div class="form-check">
+            <%
+            var wd=data.days.split(",")
+            var mchk=''
+            wd.map((item)=>{
+              if(item=='Mon')
+              {
+                mchk='checked'
+              }
+            }) %>
+           <input <%=mchk%> class="form-check-input" type="checkbox" value="Mon"  id="days" name="days">
+            <label class="form-check-label" for="days"><b>Mon</b></label>
+          </div>
+
+             <div class="form-check">
+              <%
+              var wd=data.days.split(",")
+              var tchk=''
+              wd.map((item)=>{
+                if(item=='Tue')
+                {
+                  tchk='checked'
+                }
+              }) %>
+              <input <%=tchk%> class="form-check-input" type="checkbox" value="Tue"  id="days" name="days">
+            <label class="form-check-label" for="days"><b>Tue</b></label>
+           </div>
+
+           <div class="form-check">
+            <%
+              var wd=data.days.split(",")
+              var wchk=''
+              wd.map((item)=>{
+                if(item=='Wed')
+                {
+                  wchk='checked'
+                }
+              }) %>
+            <input <%=wchk%> class="form-check-input days" type="checkbox" value="Wed"  id="days" name="days">
+            <label class="form-check-label" for="days"><b>Wed</b></label>
+           </div>
+
+           <div class="form-check">
+            <%
+              var wd=data.days.split(",")
+              var thchk=''
+              wd.map((item)=>{
+                if(item=='Thu')
+                {
+                  thchk='checked'
+                }
+              }) %>
+            <input <%=thchk%> class="form-check-input days" type="checkbox" value="Thu"  id="days" name="days">
+            <label class="form-check-label" for="days"><b>Thu</b></label>
+           </div>
+
+           <div class="form-check">
+            <%
+              var wd=data.days.split(",")
+              var fchk=''
+              wd.map((item)=>{
+                if(item=='Fri')
+                {
+                  fchk='checked'
+                }
+              }) %>
+            <input <%=fchk%> class="form-check-input days" type="checkbox" value="Fri"  id="days" name="days">
+            <label class="form-check-label" for="days"><b>Fri</b></label>
+           </div>
+
+           <div class="form-check">
+            <%
+              var wd=data.days.split(",")
+              var schk=''
+              wd.map((item)=>{
+                if(item=='Sat')
+                {
+                  schk='checked'
+                }
+              }) %>
+            <input <%=schk%> class="form-check-input days" type="checkbox" value="Sat" name="days" id="days">
+            <label class="form-check-label" for="days"><b>Sat</b></label>
+           </div>
+
+           <div class="form-check">
+            <%
+              var wd=data.days.split(",")
+              var uchk=''
+              wd.map((item)=>{
+                if(item=='Sun')
+                {
+                  uchk='checked'
+                }
+              }) %>
+            <input <%=uchk%> class="form-check-input days" type="checkbox" value="Sun" name="days" id="days">
+            <label class="form-check-label" for="days"><b>Sun</b></label>
+           </div>
+
+         </div>
+        </div>
+          
+        <div class="col-md-3">
+          <label for="sourcecity" class="form-label"><b>Source City</b></label>
+          <select id="sourcecity" name="sourcecity" class="form-select">
+            <option value="<%=data.sourcecity %>"><%=data.sourcecity %></option>
+            
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="destination" class="form-label"><b>Destination City</b></label>
+          <select id="destcity" name="destcity" class="form-select">
+            <option value="<%=data.destcity%>"><%=data.destcity%></option>
+            
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="arrivaltime" class="form-label"><b>Arrival Time</b></label>
+          <input type="time" class="form-control" value="<%=data.arrivaltime%>" name="arrtime" id="arrivaltime" />
+        </div>
+
+        <div class="col-md-3">
+          <label for="deptime" class="form-label"><b>Departure Time</b></label>
+          <input type="time" class="form-control" value="<%=data.departuretime%>" name="deptime" id="deptime" />
+        </div>
+
+        <div class="col-md-12">
+          <label for="company" class="form-label"><b>Company</b></label>
+          <input type="text" class="form-control" value="<%=data.company%>" name="company" id="company" />
+        </div>
+
+        <div class="col-md-6 ">
+          <button type="submit" name="btn" value="Edit" class="btn btn-primary"><b>EDIT</b></button>
+        </div>
+        <div class="col-md-6">
+          <button type="submit" name="btn" value="Delete" class="btn btn-primary"><b>DELETE</b></button>
+        </div>
+        
+
+        </form>
+
+    </div>
+  </div>  
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous">
+  </script>
+</html>
